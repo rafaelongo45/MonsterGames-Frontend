@@ -38,7 +38,7 @@ a {
 input {
   background: #FFF;
   font-size: 18px;
-  border: none;
+  /*border: none;*/
   border-radius: 5px;
   color: var(--header-color);
   padding: 12px;

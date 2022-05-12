@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router';
 import {FaSearch, FaShoppingCart, FaUserCircle} from 'react-icons/fa';
@@ -5,9 +6,12 @@ import {FaSearch, FaShoppingCart, FaUserCircle} from 'react-icons/fa';
 import RenderLogo from './Logo';
 
 import RenderSideBarButton from './SideBarButton';
+import UserContext from '../../contexts/UserContext';
 
 function RenderHeader(){
+  const {userInfo} = useContext(UserContext)
   const navigate = useNavigate();
+  console.log(userInfo)
 
   return(
       <Header>
@@ -17,7 +21,12 @@ function RenderHeader(){
             <input type='text' maxLength={18} placeholder='Digite o gênero para buscar'/>  
             <div><FaSearch /></div>
           </article>
-          <Avatar onClick={() => navigate('/signin')}><FaUserCircle/></Avatar>
+          {
+            userInfo.token ? 
+            <img src ={userInfo.avatar}/>
+            :
+            <Avatar onClick={() => navigate('/signin')}><FaUserCircle/></Avatar>
+          }
           <Cart><FaShoppingCart/></Cart>
       </Header>
   )
@@ -34,6 +43,12 @@ const Header = styled.header`
   align-items:center;
   justify-content:space-evenly;
   z-index: 1;
+
+  img{
+    width: 46px;
+    height: 45px;
+    border-radius: 100%;
+    }
 
   article{
     display:flex;

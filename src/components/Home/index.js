@@ -9,6 +9,7 @@ import Game from './../Game';
 
 function Home (){
   const [games, setGames] = useState([]);
+  console.log('a')
 
   useEffect(() => {
     const URL = 'http://localhost:5000/products/'
@@ -18,7 +19,7 @@ function Home (){
       alert('Ocorreu um erro - código ' + err.response.status);
       console.log(err);
     });
-  },);
+  },[]);
 
   return (
     <>

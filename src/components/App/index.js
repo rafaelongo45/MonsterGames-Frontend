@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import UserContext from './../../contexts/UserContext';
 import Home from './../Home';
-import SignIn from './../SignIn';
+import SignInPage from './../SignIn';
 import SignUp from './../SignUp';
 
 function App(){
@@ -29,7 +29,7 @@ function App(){
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/signup' element={<SignUp />} />
-          <Route path='/signin' element={<SignIn />} />
+          <Route path='/signin' element={<SignInPage />} />
         </Routes>
       </UserContext.Provider>
     </BrowserRouter>

@@ -4,6 +4,8 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import {FaSearch, FaShoppingCart, FaUserCircle} from 'react-icons/fa';
 
+import Game from './../Game';
+
 function Home (){
 
   const currentYear = dayjs().format('YYYY');
@@ -11,19 +13,14 @@ function Home (){
   const [games, setGames] = useState([]);
 
   useEffect(() => {
-
     const URL = 'http://localhost:5000/products/'
     const promise = axios.get(URL);
-    
     promise.then((promise) => { setGames([...promise.data]); });
-
     promise.catch((err)=>{
       alert('Ocorreu um erro - código ' + err.response.status);
       console.log(err);
     });
-
-  }, );
-
+  },);
 
   return (
     <>
@@ -40,7 +37,13 @@ function Home (){
         </div>
       </Header>
 
-      <Main>teste</Main>
+      <Main>
+
+        {games?.map( ({_id,name,image,price}) => 
+          <Game key={_id} name={name} image={image} price={price}/>
+        )}
+      
+      </Main>
       
       <Footer> &#127279; MonsterGames {currentYear}</Footer>
     </>
@@ -51,7 +54,8 @@ const Header = styled.header`
   width: 100%;
   height: 70px;
   background-color: var(--header-color);
-  
+  position: fixed;
+  z-index: 1;
   div {
     width: 800px;
     height: 100%;
@@ -120,12 +124,13 @@ const Cart = styled.section`
 `;
 
 const Main = styled.main`
-    max-width: 800px;
+    max-width: 840px;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;//space-evenly
+    justify-content: space-evenly;//space-evenly
     margin-bottom: 30px;
+    padding-top: 70px;
 `;
 
 const Footer = styled.footer`

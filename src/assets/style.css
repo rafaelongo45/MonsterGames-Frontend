@@ -30,7 +30,7 @@ input {
   font-size: 18px;
   border: none;
   border-radius: 5px;
-  color: #000;
+  color: var(--header-color);
   padding: 12px;
 }
 

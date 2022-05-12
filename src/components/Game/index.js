@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {FaShoppingCart} from "react-icons/fa"
 
 function Game (props) {
   const {name,image,price} = props;
@@ -6,6 +7,7 @@ function Game (props) {
     <Product>
       <abbr title={name}>
         <img src={image} alt={name}/>
+        <button> <FaShoppingCart/></button>
         <strong>R$ {price.toFixed(2).replace('.',',')}</strong>
       </abbr>
     </Product>
@@ -13,25 +15,38 @@ function Game (props) {
 }
 
 const Product = styled.div`
-  width: 160px;
-  height: 210px;
+  width: 180px;
+  height: 280px;
   background-color: #fff;
   margin: 25px;
   border-radius: 5px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
   position: relative;
+
+  img{
+    cursor: pointer;
+  }
+
+  button{
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    background:none;
+    border:none;
+    font-size: 24px;
+    color: var(--header-color);
+    cursor:pointer;
+  }
 
   strong{
     position: absolute;
-    bottom: 6px;
+    bottom: 10px;
     right: 10px;
     color: var(--header-color);
   }
 
   img {
-    width: 160px;
-    height: 180px;
+    width: 180px;
     position: absolute;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;

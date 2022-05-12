@@ -38,6 +38,7 @@ function RenderHeader(props){
               onKeyDown={ e => handleKeyPress(e)}          />  
             <div onClick={handleSearch}><FaSearch /></div>
           </article>
+          <Profile>
           {
             userInfo.token ? 
             <img src ={userInfo.avatar} alt={userInfo.name}/>
@@ -45,6 +46,7 @@ function RenderHeader(props){
             <Avatar onClick={() => navigate('/signin')}><FaUserCircle/></Avatar>
           }
           <Cart><FaShoppingCart/></Cart>
+          </Profile>
       </Header>
   )
 }
@@ -144,3 +146,14 @@ const Cart = styled.section`
     display:none;
   }
 `;
+
+const Profile = styled.section`
+  width: 125px;;
+  display: flex;
+  align-items:center;
+  justify-content:space-between;
+
+  @media(max-width: 768px){
+    display:none;
+  }
+`

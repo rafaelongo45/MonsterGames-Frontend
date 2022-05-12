@@ -1,19 +1,36 @@
+import { useContext } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
 
 import {FaUserCircle} from 'react-icons/fa';
+import UserContext from "../../contexts/UserContext.js";
 
 
 function RenderSideBar({setSideBarClick}){
   const navigate = useNavigate();
+  const {userInfo} = useContext(UserContext);
+
+  console.log(userInfo)
+
   return (
-    <>
+    <>()
+    {
+      !userInfo.token ? 
       <Section>
         <span><FaUserCircle /></span>
         <div onClick={() => navigate('/signin')}><p>Login</p></div>
         <div onClick={() => navigate('/about-us')}><p>Sobre nós</p></div>
       </Section>
-
+      :
+      <Section>
+        <span><img src ={userInfo.avatar}/></span>
+        <p>Bem vind(e), {userInfo.name}</p>
+        <div onClick={() => navigate('/mycart')}><p>Carrinho</p></div>
+        <div onClick={() => navigate('/purchases')}><p>Minhas Compras</p></div>
+        <div onClick={() => navigate('/about-us')}><p>Sobre nós</p></div>
+      </Section>
+    }
+      
       <TransparentLayer onClick={() => setSideBarClick(false)}/>
     </>
   )
@@ -22,7 +39,6 @@ function RenderSideBar({setSideBarClick}){
 export default RenderSideBar;
 
 const Section = styled.section`
-@media(max-width: 768px){
   top:0;
   left: 0;
   z-index:3;
@@ -34,10 +50,17 @@ const Section = styled.section`
   flex-direction:column;
   background-color: var(--background-color);
 
+  p{
+    margin-bottom: 30px;
+    text-align:center;
+    font-size:24px;
+    color:white;
+  }
+
   span{
     text-align:center;
     background-color:none;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     color: rgba(255,255,255,1);
     border: none;
     width: 100%;
@@ -53,9 +76,10 @@ const Section = styled.section`
     
     p{
       margin-left: 4%;
-      font-size: 25px;
-      margin-top: 4%;
+      font-size: 20px;
+      margin-top: 15px;
       color: rgba(255,255,255,1);
+      text-align:initial;
     }
   }
 
@@ -63,6 +87,18 @@ const Section = styled.section`
     border-bottom: 1px solid rgb(255,255,255);
   }
 
+@media(max-width: 550px){
+  img{
+    min-width: 100px;
+    min-height: 100px;
+  }
+}
+
+@media(min-width: 550px) and (max-width: 768px){
+  img{
+    min-width: 200px;
+    min-height: 200px;
+  }
   }
 `
 

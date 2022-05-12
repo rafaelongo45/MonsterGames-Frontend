@@ -20,8 +20,11 @@ function RenderSignInPage(){
     const promise = axios.post('http://localhost:5000/signin', user);
     
     promise.then((response) => {
-      setUserInfo(response.data)
-      navigate('/')
+      localStorage.setItem('token_MonsterGames', response.data.token);
+      localStorage.setItem('name_MonsterGames', response.data.name);
+      localStorage.setItem('avatar_MonsterGames', response.data.avatar);
+      setUserInfo(response.data);
+      navigate('/');
     })
 
     promise.catch(error => {

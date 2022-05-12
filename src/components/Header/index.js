@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router';
 import {FaSearch, FaShoppingCart, FaUserCircle} from 'react-icons/fa';
@@ -8,22 +8,39 @@ import RenderLogo from './Logo';
 import RenderSideBarButton from './SideBarButton';
 import UserContext from '../../contexts/UserContext';
 
-function RenderHeader(){
+function RenderHeader(props){
+
+  const {getSearch} = props;
+
   const {userInfo} = useContext(UserContext)
   const navigate = useNavigate();
-  console.log(userInfo)
+
+  const [search, setSearch] = useState('');
+
+  function handleKeyPress(e){
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  }
+
+  function handleSearch(){
+    getSearch (search );
+    setSearch('');
+  }
 
   return(
       <Header>
           <RenderSideBarButton/>
           <RenderLogo/>
           <article>
-            <input type='text' maxLength={18} placeholder='Digite o gênero para buscar'/>  
-            <div><FaSearch /></div>
+            <input type='text' placeholder='Digite o gênero para buscar'
+              onChange={ e => setSearch (e.target.value ) }
+              onKeyDown={ e => handleKeyPress(e)}          />  
+            <div onClick={handleSearch}><FaSearch /></div>
           </article>
           {
             userInfo.token ? 
-            <img src ={userInfo.avatar}/>
+            <img src ={userInfo.avatar} alt={userInfo.name}/>
             :
             <Avatar onClick={() => navigate('/signin')}><FaUserCircle/></Avatar>
           }

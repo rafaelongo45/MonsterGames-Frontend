@@ -45,7 +45,10 @@ function RenderCheckoutPage(){
 
     promise.then(response => console.log(response));
 
-    promise.catch(error => console.log(error));
+    promise.catch(error => {
+      console.log(error)
+      alert(error.response.data)
+    });
   }
 
   return(
@@ -63,7 +66,7 @@ export default RenderCheckoutPage;
 const Page = styled.main`
   padding-top: 70px;
   padding-bottom: 30px;
-  width: 90%;
+  width: 80%;
   margin: 0 auto;
 
 `

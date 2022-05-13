@@ -2,6 +2,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
 
+import { FiLogOut } from 'react-icons/fi';
 import {IoPersonCircle} from 'react-icons/io5';
 import UserContext from "../../contexts/UserContext.js";
 
@@ -9,6 +10,12 @@ import UserContext from "../../contexts/UserContext.js";
 function RenderSideBar({setSideBarClick}){
   const navigate = useNavigate();
   const {userInfo} = useContext(UserContext);
+
+  function logOut(){
+    navigate('/');
+    localStorage.clear();
+    window.location.reload();
+  }
 
   console.log(userInfo)
 
@@ -28,7 +35,7 @@ function RenderSideBar({setSideBarClick}){
         :
         <span><IoPersonCircle /></span>
         }
-        <p>Bem vind(e), {userInfo.name}</p>
+        <p>Bem vind(e), {userInfo.name} <Logout onClick={logOut}><FiLogOut/></Logout></p>
         <div onClick={() => navigate('/mycart')}><p>Carrinho</p></div>
         <div onClick={() => navigate('/purchases')}><p>Minhas Compras</p></div>
         <div onClick={() => navigate('/about-us')}><p>Sobre nós</p></div>
@@ -59,6 +66,7 @@ const Section = styled.section`
     text-align:center;
     font-size:24px;
     color:white;
+    position: relative;
   }
 
   span{
@@ -114,4 +122,21 @@ const TransparentLayer = styled.div`
   left:0;
   position: fixed;
   z-index: 2;
+`
+const Logout = styled.section`
+  font-size: 24px;
+  background-color:white;
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+  position:absolute;
+  top: -6px;
+  right: 10px;
+
+  svg{
+    position:absolute;
+    color: black;
+    left: 8px;
+    top: 5px;
+  }
 `

@@ -42,7 +42,7 @@ function RenderHeader(props){
           <Profile>
           {
             userInfo.token ? 
-            <img src ={userInfo.avatar} alt={userInfo.name}/>
+            userInfo.avatar? <img src ={userInfo.avatar} alt={userInfo.name}/> : <Avatar><IoPersonCircle/></Avatar>
             :
             <Avatar onClick={() => navigate('/signin')}><IoPersonCircle/></Avatar>
           }

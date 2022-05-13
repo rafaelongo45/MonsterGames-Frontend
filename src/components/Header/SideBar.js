@@ -23,7 +23,11 @@ function RenderSideBar({setSideBarClick}){
       </Section>
       :
       <Section>
+        {userInfo.avatar?
         <span><img src ={userInfo.avatar}/></span>
+        :
+        <span><IoPersonCircle /></span>
+        }
         <p>Bem vind(e), {userInfo.name}</p>
         <div onClick={() => navigate('/mycart')}><p>Carrinho</p></div>
         <div onClick={() => navigate('/purchases')}><p>Minhas Compras</p></div>

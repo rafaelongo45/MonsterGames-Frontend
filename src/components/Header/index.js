@@ -74,6 +74,7 @@ function RenderHeader(props){
                 <div>{chosenProducts.length}</div>
               } 
             </Cart>
+
           </Profile>
       </Header>
   )

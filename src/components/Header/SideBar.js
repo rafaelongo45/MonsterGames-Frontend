@@ -21,6 +21,12 @@ function RenderSideBar({setSideBarClick}){
     window.location.reload();
   }
 
+  function logOut(){
+    navigate('/');
+    localStorage.clear();
+    window.location.reload();
+  }
+
   console.log(userInfo)
 
   return (
@@ -40,6 +46,7 @@ function RenderSideBar({setSideBarClick}){
         <span><IoPersonCircle /></span>
         }
         <p>Bem vind(e), {userInfo.name} <Logout onClick={logOut}><FiLogOut/></Logout></p>
+
         <MyCart onClick={() => navigate('/mycart')}>
           <p>Carrinho</p> 
         {
@@ -48,6 +55,7 @@ function RenderSideBar({setSideBarClick}){
                 <span>{chosenProducts.length}</span>
               } 
         </MyCart>
+
         <div onClick={() => navigate('/purchases')}><p>Minhas Compras</p></div>
         <div onClick={() => navigate('/about-us')}><p>Sobre nós</p></div>
       </Section>

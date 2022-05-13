@@ -8,11 +8,30 @@ function Game (props) {
   const {name,image,price, id} = props;
   const {chosenProducts, setChosenProducts} = useContext(ProductsContext);
 
+  function addToCart(id){
+    let alreadyHas = false
+
+    chosenProducts.find(product => {
+      if(product.productId === id){
+        alreadyHas = true
+        return
+      }
+    })
+
+    if(alreadyHas){
+      alert("Produto já existe no carrinho!")
+      alreadyHas = false
+      return 
+    }
+
+    setChosenProducts([...chosenProducts, {name, image, price, productId: id, quantity: 1}])
+  }
+
   return (
     <Product>
       <abbr title={name}>
         <img src={image} alt={name}/>
-        <button onClick={() => setChosenProducts([...chosenProducts, {name, image, price, productId: id, quantity: 1}])}> <FaShoppingCart/></button>
+        <button onClick={() => addToCart(id)}> <FaShoppingCart/></button>
         <strong>R$ {price.toFixed(2).replace('.',',')}</strong>
       </abbr>
     </Product>

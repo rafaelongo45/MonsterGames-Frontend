@@ -97,6 +97,10 @@ const Input = styled.input`
   border: 1px solid #fff;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.75);
   
+  ::placeholder{
+    padding-left: 0;
+  }
+  
 `;
 
 const Button = styled.button`

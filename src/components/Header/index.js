@@ -1,7 +1,8 @@
 import { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router';
-import {FaSearch, FaShoppingCart, FaUserCircle} from 'react-icons/fa';
+import {FaSearch, FaShoppingCart} from 'react-icons/fa';
+import {IoPersonCircle} from 'react-icons/io5';
 
 import RenderLogo from './Logo';
 
@@ -43,9 +44,9 @@ function RenderHeader(props){
             userInfo.token ? 
             <img src ={userInfo.avatar} alt={userInfo.name}/>
             :
-            <Avatar onClick={() => navigate('/signin')}><FaUserCircle/></Avatar>
+            <Avatar onClick={() => navigate('/signin')}><IoPersonCircle/></Avatar>
           }
-          <Cart><FaShoppingCart/></Cart>
+          <Cart onClick={() => navigate('/mycart')}><FaShoppingCart/></Cart>
           </Profile>
       </Header>
   )
@@ -110,15 +111,9 @@ const Header = styled.header`
 `;
 
 const Avatar = styled.section`
-  width: 46px;
-  height: 45px;
-  border-radius: 100%;
-  background-color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items:center;
-  font-size: 42.5px;
-  color: var(--header-color);
+  display:flex;
+  font-size: 55px;
+  color: white;
   cursor: pointer;
 
   @media(max-width: 768px){
@@ -140,6 +135,7 @@ const Cart = styled.section`
 
   svg{
     margin-right: 2px;
+    
   }
 
   @media(max-width: 768px){

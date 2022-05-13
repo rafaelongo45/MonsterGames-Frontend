@@ -2,7 +2,7 @@ import { useContext } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
 
-import {FaUserCircle} from 'react-icons/fa';
+import {IoPersonCircle} from 'react-icons/io5';
 import UserContext from "../../contexts/UserContext.js";
 
 
@@ -17,7 +17,7 @@ function RenderSideBar({setSideBarClick}){
     {
       !userInfo.token ? 
       <Section>
-        <span><FaUserCircle /></span>
+        <span><IoPersonCircle /></span>
         <div onClick={() => navigate('/signin')}><p>Login</p></div>
         <div onClick={() => navigate('/about-us')}><p>Sobre nós</p></div>
       </Section>
@@ -60,12 +60,12 @@ const Section = styled.section`
   span{
     text-align:center;
     background-color:none;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     color: rgba(255,255,255,1);
     border: none;
     width: 100%;
     margin-top: 40px;
-    font-size: 10vw;
+    font-size: 90px;
   }
 
   div{
@@ -96,8 +96,8 @@ const Section = styled.section`
 
 @media(min-width: 550px) and (max-width: 768px){
   img{
-    min-width: 200px;
-    min-height: 200px;
+    min-width: 170px;
+    min-height: 170px;
   }
   }
 `

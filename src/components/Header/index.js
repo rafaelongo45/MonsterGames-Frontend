@@ -9,8 +9,10 @@ import RenderLogo from './Logo';
 
 import RenderSideBarButton from './SideBarButton';
 import UserContext from '../../contexts/UserContext';
+import ProductsContext from '../../contexts/ProductsContext';
 
 function RenderHeader(props){
+  const {chosenProducts} = useContext(ProductsContext);
 
   const {getSearch} = props;
 
@@ -60,9 +62,19 @@ function RenderHeader(props){
                 <Logout onClick={logOut}><FiLogOut/></Logout>
                 </>
                 :
-                <Avatar onClick={() => navigate('/signin')}><IoPersonCircle/></Avatar>
+                <Avatar onClick={() => navigate('/signin')}>
+                  <IoPersonCircle/>                       
+                </Avatar>
             }
-            <Cart onClick={() => navigate('/mycart')}><FaShoppingCart/></Cart>
+            <Cart onClick={() => navigate('/mycart')}>
+              <FaShoppingCart/>
+              {
+                chosenProducts.length === 0 ? <em></em>
+                :
+                <div>{chosenProducts.length}</div>
+              } 
+            </Cart>
+
           </Profile>
       </Header>
   )
@@ -148,6 +160,22 @@ const Cart = styled.section`
   font-size: 22px;
   color: var(--header-color);
   cursor: pointer;
+  position:relative;
+
+  div{
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background-color:rgb(255,105,100);
+    position: absolute;
+    top: -6px;
+    right: -2px;
+    color: white;
+    font-size: 13px;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+  }
 
   svg{
     margin-right: 2px;

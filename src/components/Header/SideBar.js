@@ -4,12 +4,22 @@ import { useNavigate } from "react-router";
 
 import { FiLogOut } from 'react-icons/fi';
 import {IoPersonCircle} from 'react-icons/io5';
+
 import UserContext from "../../contexts/UserContext.js";
+import ProductsContext from "../../contexts/ProductsContext.js";
 
 
 function RenderSideBar({setSideBarClick}){
   const navigate = useNavigate();
   const {userInfo} = useContext(UserContext);
+  const {chosenProducts} = useContext(ProductsContext);
+
+
+  function logOut(){
+    navigate('/');
+    localStorage.clear();
+    window.location.reload();
+  }
 
   function logOut(){
     navigate('/');
@@ -36,7 +46,16 @@ function RenderSideBar({setSideBarClick}){
         <span><IoPersonCircle /></span>
         }
         <p>Bem vind(e), {userInfo.name} <Logout onClick={logOut}><FiLogOut/></Logout></p>
-        <div onClick={() => navigate('/mycart')}><p>Carrinho</p></div>
+
+        <MyCart onClick={() => navigate('/mycart')}>
+          <p>Carrinho</p> 
+        {
+                chosenProducts.length === 0 ? <em></em>
+                :
+                <span>{chosenProducts.length}</span>
+              } 
+        </MyCart>
+
         <div onClick={() => navigate('/purchases')}><p>Minhas Compras</p></div>
         <div onClick={() => navigate('/about-us')}><p>Sobre nós</p></div>
       </Section>
@@ -111,6 +130,26 @@ const Section = styled.section`
     min-width: 170px;
     min-height: 170px;
   }
+  }
+`
+
+const MyCart = styled.div`
+  position:relative;
+
+  span{
+    margin: 0;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    background-color:rgb(255,105,100);
+    position: absolute;
+    top: 13px;
+    right: 15px;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items:center;
+    justify-content:center;
   }
 `
 

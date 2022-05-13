@@ -1,13 +1,18 @@
+import { useContext } from "react";
 import styled from 'styled-components';
 import {FaShoppingCart} from "react-icons/fa"
 
+import ProductsContext from "../../contexts/ProductsContext.js";
+
 function Game (props) {
-  const {name,image,price} = props;
+  const {name,image,price, id} = props;
+  const {chosenProducts, setChosenProducts} = useContext(ProductsContext);
+
   return (
     <Product>
       <abbr title={name}>
         <img src={image} alt={name}/>
-        <button> <FaShoppingCart/></button>
+        <button onClick={() => setChosenProducts([...chosenProducts, {name, image, price, productId: id, quantity: 1}])}> <FaShoppingCart/></button>
         <strong>R$ {price.toFixed(2).replace('.',',')}</strong>
       </abbr>
     </Product>

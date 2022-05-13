@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import UserContext from './../../contexts/UserContext';
 import Home from './../Home';
-import SignInPage from './../SignIn';
+import CartPage from '../Cart';
 import SignUp from './../SignUp';
+import SignInPage from './../SignIn';
+import CheckoutPage from '../Checkout';
+
+import UserContext from './../../contexts/UserContext';
+import ProductsContext from '../../contexts/ProductsContext';
 
 function App(){
 
@@ -22,15 +26,20 @@ function App(){
   }
 
   const [ userInfo, setUserInfo ] = useState( getUserInfo );
+  const [ chosenProducts, setChosenProducts ] = useState([])
 
   return (
     <BrowserRouter>
       <UserContext.Provider value={ { userInfo, setUserInfo } }>
+      <ProductsContext.Provider value={ { chosenProducts, setChosenProducts } }>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/signin' element={<SignInPage />} />
+          <Route path='/mycart' element={<CartPage />} />
+          <Route path='/checkout' element={<CheckoutPage />} />
         </Routes>
+      </ProductsContext.Provider>
       </UserContext.Provider>
     </BrowserRouter>
   );

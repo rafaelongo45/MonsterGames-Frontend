@@ -35,7 +35,7 @@ function Home (){
         }
         <Main>
           {games?.map( ({_id,name,image,price}) => 
-            <Game key={_id} name={name} image={image} price={price}/>
+            <Game key={_id} name={name} image={image} price={price} id = {_id}/>
           )}
         
         </Main>

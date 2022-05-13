@@ -1,14 +1,15 @@
-import { useContext } from "react";
-
-import ProductsContext from "../../contexts/ProductsContext";
+import RenderHeader from "../Header";
+import RenderFooter from "../Footer";
+import RenderCheckoutPage from "./RenderCheckoutPage";
 
 function CheckoutPage(){
-  const {chosenProducts} = useContext(ProductsContext)
-
-  console.log(chosenProducts)
-  return <>
-
-  </>
+  return (
+    <>
+      <RenderHeader/>
+      <RenderCheckoutPage/>
+      <RenderFooter/>
+    </>
+  )
 }
 
 export default CheckoutPage

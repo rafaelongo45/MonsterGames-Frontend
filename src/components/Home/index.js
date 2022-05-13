@@ -57,7 +57,7 @@ const Main = styled.main`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    margin-bottom: 30px;
+    padding-bottom: 30px;
 `;
 
 const Div = styled.div`

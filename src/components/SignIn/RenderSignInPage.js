@@ -66,10 +66,11 @@ const Form = styled.form`
   width: 20%;
 
   input{
-    width: 100%;
-    height: 80px;
-    border-radius: 8px;
-    margin-bottom: 20px;
+    width: 320px;
+    height: 40px;
+    margin-bottom: 10px;
+    border: 1px solid #fff;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.75);
   }
 
   input::placeholder{
@@ -77,16 +78,16 @@ const Form = styled.form`
   }
 
   button{
-    width: 100%;
-    height: 60px;
-    cursor:pointer;
-    margin-bottom: 40px;
-    border:none;
-    border-radius: 8px;
-    font-size: 30px;
+    width: 320px;
+    height: 40px;
+    border: 1px solid rgb(168,28,7);
+    border-radius: 5px;
     font-family: 'Creepster', cursive;
     color: white;
     background-color:rgb(168,28,7);
+    margin-top: 10px;
+    font-size: 20px;
+    cursor: pointer;
   }
 
   @media(max-width: 767px){
@@ -103,5 +104,6 @@ const Button = styled.button`
   background:none;
   width:fit-content;
   font-size: 16px;
+  margin-top: 20px;
   cursor:pointer;
 `

@@ -1,8 +1,9 @@
-import { useState, useContext } from 'react';
 import styled from 'styled-components';
+import { FiLogOut } from 'react-icons/fi';
 import { useNavigate } from 'react-router';
-import {FaSearch, FaShoppingCart} from 'react-icons/fa';
-import {IoPersonCircle} from 'react-icons/io5';
+import { useState, useContext } from 'react';
+import { IoPersonCircle } from 'react-icons/io5';
+import { FaSearch, FaShoppingCart } from 'react-icons/fa';
 
 import RenderLogo from './Logo';
 
@@ -29,24 +30,39 @@ function RenderHeader(props){
     setSearch('');
   }
 
+  function logOut(){
+    navigate('/');
+    localStorage.clear();
+    window.location.reload();
+  }
+
   return(
       <Header>
           <RenderSideBarButton/>
           <RenderLogo/>
-          <article>
-            <input type='text' placeholder='Digite o gênero para buscar'
-              onChange={ e => setSearch (e.target.value ) }
-              onKeyDown={ e => handleKeyPress(e)}          />  
-            <div onClick={handleSearch}><FaSearch /></div>
-          </article>
+            <article>
+              <input type='text' placeholder='Digite o gênero para buscar'
+                onChange={ e => setSearch (e.target.value ) }
+                onKeyDown={ e => handleKeyPress(e)}          />  
+              <div onClick={handleSearch}><FaSearch /></div>
+            </article>
           <Profile>
-          {
-            userInfo.token ? 
-            userInfo.avatar? <img src ={userInfo.avatar} alt={userInfo.name}/> : <Avatar><IoPersonCircle/></Avatar>
-            :
-            <Avatar onClick={() => navigate('/signin')}><IoPersonCircle/></Avatar>
-          }
-          <Cart onClick={() => navigate('/mycart')}><FaShoppingCart/></Cart>
+            {
+              userInfo.token ? 
+              userInfo.avatar? 
+                <>
+                <img src ={userInfo.avatar} alt={userInfo.name}/>   
+                <Logout onClick={logOut}><FiLogOut/></Logout>
+                </>
+                : 
+                <>
+                <Avatar><IoPersonCircle/></Avatar>
+                <Logout onClick={logOut}><FiLogOut/></Logout>
+                </>
+                :
+                <Avatar onClick={() => navigate('/signin')}><IoPersonCircle/></Avatar>
+            }
+            <Cart onClick={() => navigate('/mycart')}><FaShoppingCart/></Cart>
           </Profile>
       </Header>
   )
@@ -144,12 +160,28 @@ const Cart = styled.section`
 `;
 
 const Profile = styled.section`
-  width: 125px;;
+  width: 150px;;
   display: flex;
   align-items:center;
   justify-content:space-between;
 
   @media(max-width: 768px){
     display:none;
+  }
+`
+
+const Logout = styled.section`
+  font-size: 24px;
+  background-color:white;
+  width: 45px;
+  height: 45px;
+  border-radius: 100%;
+  position:relative;
+  cursor:pointer;
+
+  svg{
+    position:absolute;
+    left: 13px;
+    top: 10px;
   }
 `

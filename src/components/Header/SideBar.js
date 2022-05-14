@@ -21,12 +21,6 @@ function RenderSideBar({setSideBarClick}){
     window.location.reload();
   }
 
-  function logOut(){
-    navigate('/');
-    localStorage.clear();
-    window.location.reload();
-  }
-
   console.log(userInfo)
 
   return (

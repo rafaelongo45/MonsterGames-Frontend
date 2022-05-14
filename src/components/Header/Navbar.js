@@ -12,25 +12,42 @@ function RenderNavbar({setOpen}){
     window.location.reload();
   }
 
+  const storageToken = localStorage.getItem('token_MonsterGames');
+
   return (
     <Navbar>
       <em></em>
       <ul>
-        <li onClick={() => navigate('/myProfile')}>
-          <IconUserPage>
-            <IoPersonCircleOutline/>
-          </IconUserPage>
-          Meu perfil
-        </li>
-
-        <li onClick={logOut}>
-          <IconLogout>
-            <IoLogOutOutline/>
-          </IconLogout>
-          Logout
-        </li>
-
-        <li onClick={() => navigate('/aboutUs')}>
+        {
+          storageToken ?
+          <li onClick={() => navigate('/mypurchases')}>
+            <IconUserPage>
+              <IoPersonCircleOutline/>
+            </IconUserPage>
+            Meus pedidos
+          </li>
+          :
+          <></>
+        }
+        
+        {
+          storageToken ?
+          <li onClick={logOut}>
+            <IconLogout>
+              <IoLogOutOutline/>
+            </IconLogout>
+            Logout
+          </li>
+          :
+          <li onClick={() => navigate('/signin')}>
+            <IconLogin>
+              <IoLogOutOutline/>
+            </IconLogin>
+            Login
+          </li>
+        }
+       
+        <li onClick={() => navigate('/aboutus')}>
           <IconUs >
             <IoPeopleOutline/>
           </IconUs>
@@ -115,6 +132,23 @@ const IconLogout = styled.section`
   svg{
     transform: rotate(180deg);
     margin-right: 4px;
+  }
+`
+
+const IconLogin = styled.section`
+  margin: 0 5px;
+  font-size: 22px;
+  background-color: rgb(58, 62, 63);
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+
+  svg{
+    margin-left: 4px;
   }
 `
 

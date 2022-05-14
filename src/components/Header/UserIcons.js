@@ -45,9 +45,17 @@ function UserIcons() {
           </>
         )
       ) : (
-        <Avatar onClick={() => navigate("/signin")}>
-          <IoPersonCircle />
-        </Avatar>
+        <>
+          <Avatar onClick={() => setOpen(!open)}>
+            <IoPersonCircle />
+            {
+              open ? 
+                <RenderNavbar setOpen={setOpen}/>
+                :
+                <></>
+            }
+          </Avatar>
+        </>
       )}
       <Cart onClick={() => navigate("/mycart")}>
         <FaShoppingCart />
@@ -124,7 +132,6 @@ const Cart = styled.section`
 
   svg{
     margin-right: 2px;
-    
   }
 
   @media(max-width: 768px){

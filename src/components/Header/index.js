@@ -1,24 +1,13 @@
 import styled from 'styled-components';
-import { FiLogOut } from 'react-icons/fi';
-import { useNavigate } from 'react-router';
-import { useState, useContext } from 'react';
-import { IoPersonCircle } from 'react-icons/io5';
-import { FaSearch, FaShoppingCart } from 'react-icons/fa';
+import { useState } from 'react';
+import { FaSearch } from 'react-icons/fa';
 
 import RenderLogo from './Logo';
-
+import UserIcons from './UserIcons';
 import RenderSideBarButton from './SideBarButton';
-import UserContext from '../../contexts/UserContext';
-import ProductsContext from '../../contexts/ProductsContext';
 
 function RenderHeader(props){
-  const {chosenProducts} = useContext(ProductsContext);
-
   const {getSearch} = props;
-
-  const {userInfo} = useContext(UserContext)
-  const navigate = useNavigate();
-
   const [search, setSearch] = useState('');
 
   function handleKeyPress(e){
@@ -32,50 +21,17 @@ function RenderHeader(props){
     setSearch('');
   }
 
-  function logOut(){
-    navigate('/');
-    localStorage.clear();
-    window.location.reload();
-  }
-
   return(
       <Header>
           <RenderSideBarButton/>
           <RenderLogo/>
-            <article>
-              <input type='text' placeholder='Digite o gênero para buscar'
-                onChange={ e => setSearch (e.target.value ) }
-                onKeyDown={ e => handleKeyPress(e)}          />  
-              <div onClick={handleSearch}><FaSearch /></div>
-            </article>
-          <Profile>
-            {
-              userInfo.token ? 
-              userInfo.avatar? 
-                <>
-                <img src ={userInfo.avatar} alt={userInfo.name}/>   
-                <Logout onClick={logOut}><FiLogOut/></Logout>
-                </>
-                : 
-                <>
-                <Avatar><IoPersonCircle/></Avatar>
-                <Logout onClick={logOut}><FiLogOut/></Logout>
-                </>
-                :
-                <Avatar onClick={() => navigate('/signin')}>
-                  <IoPersonCircle/>                       
-                </Avatar>
-            }
-            <Cart onClick={() => navigate('/mycart')}>
-              <FaShoppingCart/>
-              {
-                chosenProducts.length === 0 ? <em></em>
-                :
-                <div>{chosenProducts.length}</div>
-              } 
-            </Cart>
-
-          </Profile>
+          <Search>
+            <input type='text' placeholder='Digite o gênero para buscar'
+              onChange={ e => setSearch (e.target.value ) }
+              onKeyDown={ e => handleKeyPress(e)}          />  
+            <div onClick={handleSearch}><FaSearch /></div>
+          </Search>
+          <UserIcons/>
       </Header>
   )
 }
@@ -96,9 +52,19 @@ const Header = styled.header`
     width: 46px;
     height: 45px;
     border-radius: 100%;
-    }
+  }
+  
+  @media(max-width: 768px){
+    display: flex;
+    justify-content:center;
 
-  article{
+    article{
+      display:none;
+    }
+  }
+`;
+
+const Search = styled.article`
     display:flex;
     align-items:center;
     width: 40%;
@@ -126,90 +92,13 @@ const Header = styled.header`
       font-size: 22px;
       cursor: pointer;
     }
-  }
-  
-  @media(max-width: 768px){
+
+    @media(max-width: 768px){
     display: flex;
     justify-content:center;
 
     article{
       display:none;
     }
-  }
-`;
-
-const Avatar = styled.section`
-  display:flex;
-  font-size: 55px;
-  color: white;
-  cursor: pointer;
-
-  @media(max-width: 768px){
-    display:none;
-  }
-`;
-
-const Cart = styled.section`
-  width: 45px;
-  height: 45px;
-  border-radius: 100%;
-  background-color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items:center;
-  font-size: 22px;
-  color: var(--header-color);
-  cursor: pointer;
-  position:relative;
-
-  div{
-    width: 20px;
-    height: 20px;
-    border-radius: 100%;
-    background-color:rgb(255,105,100);
-    position: absolute;
-    top: -6px;
-    right: -2px;
-    color: white;
-    font-size: 13px;
-    display: flex;
-    align-items:center;
-    justify-content:center;
-  }
-
-  svg{
-    margin-right: 2px;
-    
-  }
-
-  @media(max-width: 768px){
-    display:none;
-  }
-`;
-
-const Profile = styled.section`
-  width: 150px;;
-  display: flex;
-  align-items:center;
-  justify-content:space-between;
-
-  @media(max-width: 768px){
-    display:none;
-  }
-`
-
-const Logout = styled.section`
-  font-size: 24px;
-  background-color:white;
-  width: 45px;
-  height: 45px;
-  border-radius: 100%;
-  position:relative;
-  cursor:pointer;
-
-  svg{
-    position:absolute;
-    left: 13px;
-    top: 10px;
   }
 `

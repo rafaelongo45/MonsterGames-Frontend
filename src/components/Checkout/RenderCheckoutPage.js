@@ -1,6 +1,7 @@
 import axios from "axios";
 import styled from "styled-components";
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import InsertCard from "./InsertCard";
 import InsertAddress from "./InsertAddress";
@@ -13,7 +14,9 @@ function RenderCheckoutPage(){
   const [totalPrice, setTotalPrice] = useState(0);
   const [userAddress, setUserAddress] = useState({address: ''});
   const [userCard, setUserCard] = useState({installments: 1});
-  const {chosenProducts} = useContext(ProductsContext);
+  const {chosenProducts, setChosenProducts} = useContext(ProductsContext);
+
+  const navigate = useNavigate();
 
   const storageToken = localStorage.getItem('token_MonsterGames');
 
@@ -43,7 +46,11 @@ function RenderCheckoutPage(){
       sendTo: userAddress
     }, config)
 
-    promise.then(response => console.log(response));
+    promise.then(response => {
+      console.log(response);
+      setChosenProducts([])
+      navigate('/success', {state: {insertedId: response.data.insertedId}});
+    });
 
     promise.catch(error => {
       console.log(error)

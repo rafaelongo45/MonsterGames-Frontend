@@ -7,27 +7,38 @@ import RenderFooter from '../Footer/index.js';
 
 import Game from './../Game';
 
-function Home (){
+import {  useParams } from 'react-router-dom';
+
+function Search (props){
+
+  const { search } = useParams();
+
+  //const { search } = props;
+
   const [games, setGames] = useState([]);
 
   useEffect(() => {
-    const URL = 'http://localhost:5000/products';
+    const URL = `http://localhost:5000/products?genre=${search}`;
     const promise = axios.get(URL);
     promise.then((promise) => { setGames([...promise.data]); });
     promise.catch((err)=>{
       alert('Ocorreu um erro - código ' + err.response.status);
       console.log(err);
     });
-  },);
+  },[search]);
 
   return (
     <>
       <RenderHeader />
+      
+      {console.log(search)}
+     
       <Container>
+        <Div>Exibindo resultados para <span>{search}</span></Div>
         <Main>
           {games?.map( ({_id,name,image,price}) => 
             <Game key={_id} name={name} image={image} price={price} id = {_id}/>
-          )}
+          )}       
         </Main>
       </Container>
       <RenderFooter/>
@@ -62,4 +73,4 @@ const Div = styled.div`
 
 `;
 
-export default Home;
+export default Search;

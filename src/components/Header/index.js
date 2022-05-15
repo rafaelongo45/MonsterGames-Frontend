@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
+import { useNavigate } from 'react-router';
 
 import RenderLogo from './Logo';
 import UserIcons from './UserIcons';
 import RenderSideBarButton from './SideBarButton';
 
 function RenderHeader(props){
-  const {getSearch} = props;
   const [search, setSearch] = useState('');
+  const navigate = useNavigate();
 
   function handleKeyPress(e){
     if (e.key === 'Enter') {
@@ -17,8 +18,7 @@ function RenderHeader(props){
   }
 
   function handleSearch(){
-    getSearch (search );
-    setSearch('');
+    search === '' ?  navigate('/') : navigate(`/search/${search}`);
   }
 
   return(

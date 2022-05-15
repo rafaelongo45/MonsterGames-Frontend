@@ -55,6 +55,7 @@ const Product = styled.div`
 
     img{
       max-width: 176px;
+      max-height: 235px;
       border-radius: 6px;
       margin-top: 3px;
     }

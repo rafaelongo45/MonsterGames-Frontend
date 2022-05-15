@@ -3,7 +3,7 @@ import styled from "styled-components"
 function PurchasedGames({purchaseInfo}){
   return (
     <Overview>
-      <h2>Esse é o resumo da sua compra:</h2>
+      <h2>Esse é o resumo da sua compra</h2>
 
       <Games>
         {
@@ -34,8 +34,32 @@ const Overview = styled.section`
   display: flex;
   flex-direction:column;
   border-radius: 8px;
+  margin: 0 auto;
   margin-top: 15px;
   background:rgb(242,243,244);
+  width: 80%;
+  height: 650px;
+  overflow-y:scroll;
+
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 6px;
+    margin-top:10px;
+    margin-bottom:10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
 
   h2{
     width: 100%;
@@ -53,16 +77,19 @@ const Overview = styled.section`
     right: 6px;
     bottom: 32px;
     color: black;
-    margin: 10px;
+    margin: 20px;
   }
 
   @media(max-width: 1000px){
+    width: 90%;
+
     h2{
       text-align:center;
     }
 
     em{
       bottom: 35px;
+      text-align:center;
     }
   }
 `
@@ -70,50 +97,40 @@ const Overview = styled.section`
 const Games = styled.article`
   display: flex;
   flex-wrap:wrap;
-  margin-bottom: 40px;
+  justify-content:center;
+  margin: 10px 0 40px 0;
 `
 
 const Game = styled.div`
-  margin: auto;
+  margin: 10px 20px 0 20px;
   text-align: center;
-  height: 400px;
+  border: 1px solid rgb(169,169,169);
+  border-radius: 10px;
+  height: 320px;
 
   img{
-    width: 200px;
+    width: 160px;
+    height: 213px;
     border-radius: 10px;
-    margin-top: 30px;
+    margin: 10px 10px 0 10px;
   }
 
   h3{
-      text-align:center;
-      height: 50px;
-      font-size: 22px;
-      margin: 15px 0;
-      font-weight:700;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
+    text-align:center;
+    height:fit-content;
+    font-size: 24px;
+    font-weight:700;
+    margin-bottom: 5px;
+    width: 180px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height: 60px;
+  }
 
-    span{
-      font-size: 16px;
-    }
-
-  @media(max-width: 1000px){
-    img{
-      width: 220px;
-    }
-
-    h3{
-      text-align:center;
-      font-size: 24px;
-      margin: 15px 0;
-      font-weight:700;
-    }
-
-    span{
-      font-size: 16px;
-    }
+  span{
+    font-size: 16px;
+    margin-bottom: 5px;
   }
 `
 

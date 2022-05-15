@@ -61,7 +61,6 @@ export default RenderSuccessPage;
 
 const Main = styled.main`
   width: 80%;
-  max-width: 1200px;
   margin: 0 auto; 
   padding: 70px 0 50px 0;
   position: relative;

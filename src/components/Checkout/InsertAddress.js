@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 
 function InsertAddress(props){
@@ -8,6 +7,8 @@ function InsertAddress(props){
 
   return (
     <Address>
+      <p>Endereço</p>
+
       {
         <Form>
           <Input type='text' placeholder='Endereço' required value={userAddress.address} 
@@ -45,12 +46,13 @@ const Address = styled.div`
   display:flex;
   position:relative;
 
-  span{
+  p{
+    font-family: 'Creepster', cursive;
     position: absolute;
-    bottom: 0;
-    right: 0px;
-    font-size: 20px;
-    cursor:pointer;
+    top: 30px;
+    left: 30px;
+    font-size: 30px;
+    color:rgb(171,75,82);
   }
 `
 
@@ -59,6 +61,8 @@ const Form = styled.form`
   height:fit-content;
   display: flex;
   flex-wrap:wrap;
+  margin-top: 20px;
+  margin-left: 20px;
 `;
 
 const Input = styled.input`

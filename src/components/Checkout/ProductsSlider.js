@@ -56,6 +56,7 @@ function ProductsSlider(props){
           <li>
             <input type="radio" id="slide1" name="slide" defaultChecked onChange={() => {checkClick1(); checkClick2(); checkClick3()}}/>
             <label htmlFor="slide1"></label>
+            
             <Products>
               {
                 chosenProducts.map((product) => {
@@ -102,7 +103,7 @@ const Teste = styled.article`
   li{
     list-style:none;
     position:absolute;
-    height: 700px;
+    height: 550px;
     width: 100%;
 
     label{
@@ -116,7 +117,7 @@ const Teste = styled.article`
       box-shadow: 0 5px rgb(105,105,105);
       width: 30px;
       z-index: 2;
-    }
+    }    
 
     label:hover{
       background:rgb(245,245,245);
@@ -166,28 +167,29 @@ const Products = styled.div`
   display:flex;
   flex-wrap: wrap;
   width: 100%;
-  height:100%;
+  height:550px;
+  padding-top: 60px;
   overflow-y:scroll;
 
-::-webkit-scrollbar {
-  width: 4px;
-}
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1; 
-  border-radius: 6px;
-  margin-top:10px;
-  margin-bottom:10px;
-}
- 
-::-webkit-scrollbar-thumb {
-  background: #888; 
-  border-radius: 6px;
-}
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 6px;
+    margin-top:10px;
+    margin-bottom:10px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 6px;
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #555; 
-}
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
 `
 const Product = styled.article`
   border: 1px solid rgb(191,193,194);
@@ -199,14 +201,6 @@ const Product = styled.article`
   justify-content:start;
   position:relative;
   margin: 10px 20px;
-
-  :nth-child(1){
-    margin-top: 60px;
-  }
-
-  :nth-child(2){
-    margin-top: 60px;
-  }
 
   img{
     width: 120px;
@@ -245,14 +239,6 @@ const Info = styled.aside`
     bottom: 25px;
     right: 65px;
   }
-
-  span{
-    position: absolute;
-    bottom: 0;
-    right: 23px;
-    font-size: 20px;
-    cursor:pointer;
-  }
 `
 
 const ReviewContainer = styled.article`
@@ -260,7 +246,7 @@ const ReviewContainer = styled.article`
   background-color: rgb(242,243,244);
   margin-top: 30px;
   border-radius: 10px;
-  min-height: 700px;
+  min-height: 560px;
   height: 100%;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
   
@@ -272,7 +258,7 @@ const ReviewContainer = styled.article`
       color:rgb(128,24,24);
       font-family: 'Creepster', cursive;
       position: absolute;
-      top: 20px;
+      top: 28px;
       right: 20px;
       font-size: 28px;
     }

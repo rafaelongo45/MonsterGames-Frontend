@@ -59,7 +59,9 @@ function InsertCard(props){
 
   return (
     <Card>
+        <p>Cartão</p>
       <Form>
+
         <Input type='text' placeholder='Número do cartão' required value={userCard.cardNumber} 
           onChange={e => setUserCard ({...userCard, cardNumber: e.target.value, value: parseFloat(price) })} />
 
@@ -69,18 +71,22 @@ function InsertCard(props){
         <Input type='number' placeholder='CVV' required value={userCard.cvv} 
           onChange={e => setUserCard ({...userCard, cvv: parseInt(e.target.value)})} />
 
-        <Input type='text' placeholder='CPF' required value={userCard.cpf} 
-          onChange={e => setUserCard ({...userCard, cpf: e.target.value })} />
-
         <Installments value = {userCard.installments} onChange={e => setUserCard ({...userCard, installments: parseInt(e.target.value)})}>
           <option value = "1">1</option>
           <option value = "2">2</option>
           <option value = "3">3</option>
         </Installments>
+
+        <Input type='text' placeholder='Nome completo' required value={userCard.fullName} 
+          onChange={e => setUserCard ({...userCard, fullName: e.target.value })} />
+
+        <Input type='text' placeholder='CPF' required value={userCard.cpf} 
+          onChange={e => setUserCard ({...userCard, cpf: e.target.value })} />
+       
       </Form>
 
       <Finalize>
-        <p>Total: {userCard.installments}x R$ {price}</p>
+        <p>Total : {userCard.installments}x R$ {price}</p>
         <button onClick={sendData}>Confirmar compra!</button>
       </Finalize>
     </Card>
@@ -94,6 +100,16 @@ const Card = styled.div`
   height: 100%;
   display:flex;
   position:relative;
+  
+  p{
+    font-family: 'Creepster', cursive;
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    font-size: 30px;
+    color:rgb(171,75,82);
+  }
+  
  
   div{
     z-index: 1;
@@ -109,10 +125,12 @@ const Card = styled.div`
 `
 
 const Form = styled.form`
-  width: 100%;
+  width: 90%;
   height:fit-content;
   display: flex;
   flex-wrap:wrap;
+  margin-top: 20px;
+  margin-left: 20px;
 `;
 
 const Input = styled.input`
@@ -130,22 +148,27 @@ const Input = styled.input`
 
   :nth-child(2){
     margin-top: 100px;
-    width: 16%;
+    width: 12%;
     margin-left: 20px;
-    margin-right: 200px;
+    margin-right: 30%;
   }
 
   :nth-child(3){
     width: 10%;
-    margin-right: 70%;
+    margin-right: 30px;
     
   }
 
-  :nth-child(4){
-    width: 25%;
+  :nth-child(5){
+    width: 40%;
     margin-right: 20px;
   }
   
+  :nth-child(6){
+    width: 23%;
+    margin-right: 20px;
+  }
+
   ::placeholder{
     padding-left: 0;
   }
@@ -160,10 +183,11 @@ const Installments = styled.select`
   width: 40px;
   border:none;
   height: 40px;
-  margin-bottom: 10px;
   background-color:white;
   border: 1px solid #fff;
+  border-radius: 8px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.75);
+  margin-right: 70%;
 
   option{
     text-align: center;
@@ -176,30 +200,27 @@ const Finalize = styled.section`
   left: 2.5%;
   width: 95%;
   position:absolute;
-  height: 90px;
-  bottom: 0;
+  height: 80px;
+  bottom: 10px;
   font-family: 'Creepster', cursive;
-  color:rgba(0,0,0,0.8);
-
 
   p{
     position: absolute;
-    bottom: 30px;
     left: 0;
     font-size: 24px;
-    cursor:pointer;
+    color:rgba(0,0,0,0.8);
   }
 
   button{
     height: 45px;
     position:absolute;
-    bottom: 20px;
+    bottom: 13px;
     right: 10px;
     border:none;
     background:none;
     color:rgb(128,24,24);
     font-size: 26px;
     font-family: 'Creepster', cursive;
-
+    cursor:pointer;
   }
 `

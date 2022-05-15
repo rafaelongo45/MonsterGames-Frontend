@@ -1,15 +1,11 @@
 import { useNavigate } from "react-router";
 import styled from "styled-components";
 
-import logoClosedMouth from "../../assets/images/logo1.png"
-
-
 function RenderLogo(){
   const navigate = useNavigate();
 
   return (
     <Logo onClick={() => navigate("/")}>
-      <img src={logoClosedMouth} alt="logo"></img>
       <p>MonsterGames</p>
     </Logo>
   )

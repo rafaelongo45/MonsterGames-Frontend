@@ -43,12 +43,21 @@ const Product = styled.div`
   height: 280px;
   background-color: #fff;
   margin: 25px;
-  border-radius: 5px;
+  border-radius: 8px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   position: relative;
 
-  img{
+  abbr{
     cursor: pointer;
+    display:flex;
+    align-items:start;
+    justify-content:center;
+
+    img{
+      max-width: 176px;
+      border-radius: 6px;
+      margin-top: 3px;
+    }
   }
 
   button{
@@ -60,6 +69,17 @@ const Product = styled.div`
     font-size: 24px;
     color: var(--header-color);
     cursor:pointer;
+
+    svg:active{
+      animation: shake 0.1s;
+    }
+
+    @keyframes shake{
+      0% { transform: translate(1px, 1px) rotate(0deg); }
+      
+      100% { transform: translate(1px, -2px) rotate(-1deg); }
+      }
+   
   }
 
   strong{

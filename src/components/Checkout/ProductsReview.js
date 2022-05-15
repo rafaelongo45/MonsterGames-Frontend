@@ -48,7 +48,7 @@ function ProductsReview(props){
         <span>Total da compra: R$ {totalPrice}</span>  
       </Products>
     }
-      </ReviewContainer>
+    </ReviewContainer>
   )
 }
 

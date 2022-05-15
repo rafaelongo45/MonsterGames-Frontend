@@ -27,6 +27,8 @@ function PurchaseDetails(props) {
                   <div>
                     <strong>{product.name}</strong>
                     <br/>
+                    <strong>Qtd.: {product.quantity}</strong>
+                    <br/>
                     <strong>R$ {product.price.toFixed(2).replace('.',',')} cada</strong>
                   </div>
                 </Products>
@@ -58,39 +60,9 @@ function PurchaseDetails(props) {
   );
 }
 
-/*<Details> Produtos 
-          {purchase.products.map(product => { return (
-            <Products key={product.productId} >
-              <img src={product.image} alt={product.name} />
-              <div>
-                <strong>{product.name}</strong>
-                <br/>
-                <strong>R$ {product.price.toFixed(2).replace('.',',')} cada</strong>
-              </div>
-            </Products>
-          )})}         
-        </Details>
-        <div>
-          <Details> Entrega          
-            <Address>
-              <strong>{purchase.sendTo.address}, {purchase.sendTo.addressNumber}</strong>
-              <strong>Bairro: {purchase.sendTo.neighborhood}</strong>
-              <strong>CEP: {purchase.sendTo.zipCode}</strong>
-              <strong>Cidade: {purchase.sendTo.city} - {purchase.sendTo.state}</strong>
-            </Address>         
-          </Details>
-          <Details> Pagamento          
-            <Address>
-              <strong>Cartão final: {purchase.paymentInfo.cardNumber}</strong>
-              <strong>
-                Em: {purchase.paymentInfo.installments}x de {purchase.paymentInfo.value.toFixed(2).replace('.',',')}
-              </strong>
-              
-            </Address>         
-          </Details>
-        </div>*/
-
 const BasicInfo = styled.div`
+  width: 100%;
+  min-height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: initial;  
@@ -152,13 +124,16 @@ const Products = styled.div`
   font-size: 15px;
   display: flex;
   align-items: center;
-  margin-bottom: 5px;
+  margin: 5px 0;
+  color: var(--header-color);
   
   img {
-    width: 80px;
-    height: 100px;
+    width: 100px;
+    height: 130px;
     border-radius: 5px;
     margin-right: 5px;
+    border: 1px solid #fff;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   }
 
 `;
@@ -170,13 +145,13 @@ const Address = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  margin-bottom: 5px;
-  
+  margin: 5px 0;
+  color: var(--header-color);
 `;
 
 const Details = styled.div`
   font-family: 'Creepster', cursive;
-  font-size: 16px;
+  font-size: 20px;
   color:rgb(128,24,24);
   padding: 10px;
   line-height: 20px;

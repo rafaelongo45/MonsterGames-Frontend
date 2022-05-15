@@ -39,7 +39,7 @@ function RenderSideBar({setSideBarClick}){
         :
         <span><IoPersonCircle /></span>
         }
-        <p>Bem vind(e), {userInfo.name} <Logout onClick={logOut}><FiLogOut/></Logout></p>
+        <p>Bem vind(e), {userInfo.name} </p>
 
         <MyCart onClick={() => navigate('/mycart')}>
           <p>Carrinho</p> 
@@ -50,8 +50,9 @@ function RenderSideBar({setSideBarClick}){
               } 
         </MyCart>
 
-        <div onClick={() => navigate('/purchases')}><p>Minhas Compras</p></div>
+        <div onClick={() => navigate('/mypurchases')}><p>Minhas Compras</p></div>
         <div onClick={() => navigate('/about-us')}><p>Sobre nós</p></div>
+        <div onClick={() => logOut}> <p>Logout</p> </div>
       </Section>
     }
       

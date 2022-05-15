@@ -33,7 +33,7 @@ function InsertAddress(props){
           onChange={e => setUserAddress ({...userAddress, state: e.target.value })} />
       </Form>
       }
-      <span>Total da compra: R$ {totalPrice.toFixed(2)}</span>
+      <span>Total : R$ {totalPrice.toFixed(2)}</span>
     </Address>
   )
 }
@@ -52,7 +52,16 @@ const Address = styled.div`
     top: 30px;
     left: 30px;
     font-size: 30px;
-    color:rgb(171,75,82);
+    color:rgb(0,0,0);
+  }
+
+  @media(max-width:1000px){
+    p{
+      margin-top: 10px;
+      top: 75px;
+      left: 105px;
+      font-size:26px;
+    }
   }
 `
 
@@ -63,6 +72,48 @@ const Form = styled.form`
   flex-wrap:wrap;
   margin-top: 20px;
   margin-left: 20px;
+
+  @media(max-width:1000px){
+    flex-direction:column;
+
+    input:nth-child(n){
+      margin: 8px 0;
+    }
+
+    input:nth-child(1){
+      width:93%;
+      margin-top:120px;
+    }
+
+    input:nth-child(2){
+      width: 25%;
+    }
+
+    :nth-child(2)::-webkit-outer-spin-button,
+    :nth-child(2)::-webkit-inner-spin-button{
+      -webkit-appearance: none;
+    }
+
+    input:nth-child(3){
+      width: 60%;
+    }
+
+    input:nth-child(4){
+      width: 60%;
+    }
+
+    input:nth-child(5){
+      width: 60%;
+    }
+
+    input:nth-child(6){
+      width: 60%;
+    }
+
+    input:nth-child(7){
+      width: 30%;
+    }
+  }
 `;
 
 const Input = styled.input`

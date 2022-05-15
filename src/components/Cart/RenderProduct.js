@@ -80,10 +80,22 @@ const Product = styled.article`
   }
 
   img{
-    width: 120px;
+    width: 100px;
     border-radius: 6px;
-    height: 160px;
+    height: 140px;
     margin-left: 10px;
+  }
+
+  @media(max-width:1000px){
+    width: 80%;
+    margin: 10px 0;
+    display:flex;
+    flex-direction: column;
+    height: fit-content;
+
+    img{
+      margin: 10px 0;
+    }
   }
 `
 
@@ -125,5 +137,33 @@ const Info = styled.aside`
     right: 23px;
     font-size: 20px;
     cursor:pointer;
+  }
+
+  @media(max-width:1000px){
+    width: 80%;
+    margin: 10px 0;
+    display:flex;
+    flex-direction: column;
+    height: fit-content;
+    text-align:center;
+
+    h1{
+      font-size: 20px;
+      margin: 10px 0;
+    }
+
+    p{
+      position: initial;
+      margin: 10px 0 20px 0;
+    }
+
+    span{
+      bottom: 5px;     
+      right: 5px; 
+    }
+
+    select{
+      position:initial;     
+    }
   }
 `

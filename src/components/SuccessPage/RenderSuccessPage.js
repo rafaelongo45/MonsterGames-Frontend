@@ -53,7 +53,6 @@ function RenderSuccessPage(){
           :
           <PurchasedGames purchaseInfo={purchaseInfo}/>
         }
-      <em>Também enviamos algumas informações para o seu e-mail cadastrado</em>
     </Main>
   )
 }
@@ -62,17 +61,9 @@ export default RenderSuccessPage;
 
 const Main = styled.main`
   width: 80%;
+  max-width: 1200px;
   margin: 0 auto; 
-  padding: 70px 0 30px 0;
+  padding: 70px 0 50px 0;
   position: relative;
-
-  em{
-    text-align: center;
-    position: absolute;
-    font-size: 13px;
-    right: 6px;
-    bottom: 6px;
-    color: rgb(105,105,105);
-  }
 
 `

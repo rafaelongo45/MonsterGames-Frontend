@@ -22,6 +22,7 @@ function PurchasedGames({purchaseInfo}){
       <Total>
         <p>Valor pago: {purchaseInfo.paymentInfo.installments}x de R${(purchaseInfo.paymentInfo.value / purchaseInfo.paymentInfo.installments).toFixed(2)}</p>    
       </Total>
+      <em>Também enviamos algumas informações para o seu e-mail cadastrado</em>
 
     </Overview>
   )
@@ -46,27 +47,78 @@ const Overview = styled.section`
     color: rgb(178,34,34);
     font-family: 'Creepster', cursive;
   }
+
+  em{
+    font-size: 16px;
+    right: 6px;
+    bottom: 32px;
+    color: black;
+    margin: 10px;
+  }
+
+  @media(max-width: 1000px){
+    h2{
+      text-align:center;
+    }
+
+    em{
+      bottom: 35px;
+    }
+  }
 `
 
 const Games = styled.article`
   display: flex;
   flex-wrap:wrap;
-  margin: 40px 0;
-
+  margin-bottom: 40px;
 `
 
 const Game = styled.div`
   margin: auto;
   text-align: center;
+  height: 400px;
 
   img{
-    width: 250px;
+    width: 200px;
     border-radius: 10px;
+    margin-top: 30px;
+  }
+
+  h3{
+      text-align:center;
+      height: 50px;
+      font-size: 22px;
+      margin: 15px 0;
+      font-weight:700;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    span{
+      font-size: 16px;
+    }
+
+  @media(max-width: 1000px){
+    img{
+      width: 220px;
+    }
+
+    h3{
+      text-align:center;
+      font-size: 24px;
+      margin: 15px 0;
+      font-weight:700;
+    }
+
+    span{
+      font-size: 16px;
+    }
   }
 `
 
 const Total = styled.div`
-  height: 60px;
+  height: 80px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -74,4 +126,11 @@ const Total = styled.div`
   font-size: 32px;
   color: rgb(178,34,34);
   font-family: 'Creepster', cursive;
+
+  @media(max-width: 1000px){
+    p{
+      text-align:center;
+      font-size: 24px;
+    }
+  }
 `

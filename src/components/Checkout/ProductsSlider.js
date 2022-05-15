@@ -58,6 +58,7 @@ function ProductsSlider(props){
             <label htmlFor="slide1"></label>
             
             <Products>
+              <span>Total : R$ {totalPrice.toFixed(2)}</span>  
               {
                 chosenProducts.map((product) => {
                   return (
@@ -73,7 +74,7 @@ function ProductsSlider(props){
                   )
                 })
               }
-              <span>Total da compra: R$ {totalPrice.toFixed(2)}</span>  
+              
             </Products>
           </li>
 
@@ -153,14 +154,28 @@ const Teste = styled.article`
   div {
     opacity: 0;
     visibility: hidden;
-}
+  }
 
   input:checked ~ div {
     opacity: 1;
     visibility: visible;
     z-index: 1;
-}
+  }
 
+  @media(max-width: 1000px){
+
+    li:nth-child(1) label {
+      left: 0;
+    } 
+
+    li:nth-child(2) label {
+      left: 33%;
+    }
+
+    li:nth-child(3) label {
+      left: 67%;
+    }
+  }
 `
 
 const Products = styled.div`
@@ -190,6 +205,13 @@ const Products = styled.div`
   ::-webkit-scrollbar-thumb:hover {
     background: #555; 
   }
+
+  @media(max-width: 1000px){    
+    article:nth-child(2){
+      margin-top: 20px;
+    }
+  }
+  
 `
 const Product = styled.article`
   border: 1px solid rgb(191,193,194);
@@ -207,6 +229,11 @@ const Product = styled.article`
     border-radius: 6px;
     height: 160px;
     margin-left: 10px;
+  }
+
+  @media(max-width: 1000px){    
+    width:90%;
+    
   }
 `
 
@@ -239,6 +266,47 @@ const Info = styled.aside`
     bottom: 25px;
     right: 65px;
   }
+
+  @media(min-width: 1001px) and (max-width: 1300px){
+    h2{
+      text-align:center;
+      width: 100%;
+      margin-left: 0;
+    }
+
+    p{
+      position: initial;
+      width: 100%;
+    }
+
+    em{
+      position: initial;
+      width: 100%;
+    }
+  }
+
+  @media(max-width: 1000px){    
+    margin: 0 5px;
+    width:100%;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+
+    h2{
+      margin: 0;
+      font-size: 18px;
+    }
+
+    p{
+      position: initial;
+      font-size: 14px;
+    }
+
+    em{
+      position:initial;
+      font-size: 14px;
+    }
+  }
 `
 
 const ReviewContainer = styled.article`
@@ -261,6 +329,18 @@ const ReviewContainer = styled.article`
       top: 28px;
       right: 20px;
       font-size: 28px;
+    }
+  }
+
+  @media(max-width: 1000px){    
+    width: 300px;
+    
+    div{
+      span{
+        font-size:24px;
+        right:22%;
+        margin-top:10px;
+      }
     }
   }
 `

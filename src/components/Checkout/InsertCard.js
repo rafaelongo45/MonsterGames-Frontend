@@ -121,16 +121,59 @@ const Card = styled.div`
     display:flex;
     align-items:center;
     position:relative;
-}
+  }
+
+  @media(max-width:1000px){
+    display:flex;
+
+    p{
+      color:black;
+      left: 110px;
+
+    }
+  }
 `
 
 const Form = styled.form`
-  width: 90%;
+  width: 100%;
   height:fit-content;
   display: flex;
   flex-wrap:wrap;
   margin-top: 20px;
   margin-left: 20px;
+
+  @media(max-width:1000px){
+    flex-direction:column;
+
+    input:nth-child(n){
+      margin: 8px 0;
+    }
+
+    input:nth-child(1){
+      width:93%;
+      margin-top:70px;
+    }
+
+    input:nth-child(2){
+      width: 44%;
+    }
+
+    input:nth-child(3){
+      width: 25%;
+    }
+
+    input:nth-child(4){
+      width: 60%;
+    }
+
+    input:nth-child(5){
+      width: 93%;
+    }
+
+    input:nth-child(6){
+      width: 60%;
+    }
+  }
 `;
 
 const Input = styled.input`
@@ -192,6 +235,12 @@ const Installments = styled.select`
   option{
     text-align: center;
   }
+
+  @media(max-width: 1000px){
+    position:absolute;
+    top:26.5%;
+    left: 67%;
+  }
 `
 
 const Finalize = styled.section`
@@ -222,5 +271,26 @@ const Finalize = styled.section`
     font-size: 26px;
     font-family: 'Creepster', cursive;
     cursor:pointer;
+  }
+
+  @media(max-width: 1000px){
+    height:16%;
+    border-top:0;
+    display:flex;
+    flex-direction:row;
+    text-align:center;
+
+    p{
+      position:initial;
+      border-bottom: 1px solid rgb(132,132,130);
+      padding-bottom: 15px;
+      width:100%;
+      height: 40%;
+    }
+
+    button{
+      right: 13%;
+      bottom: 0; 
+    }
   }
 `

@@ -36,7 +36,6 @@ function RenderCartPage(){
             <h1>Total do carrinho</h1>
             <h2>Frete: <p>  R$ 0,00</p></h2>
             <h3>Total: <p> R$ {totalPrice.toFixed(2)}</p></h3>
-            
           </Total>
           <button onClick={token ? () => navigate('/checkout')  : () => navigate('/signin')}>Checkout <MdKeyboardArrowRight/></button>
         </>
@@ -81,6 +80,14 @@ const Products = styled.section`
       color: rgb(128,0,0);
     }
   }
+
+  @media(max-width:1000px){
+    display:flex;
+    flex-wrap:wrap;
+    width:80%;
+    align-items:center;
+    flex-direction:column;
+  }
 `
 
 const PageTitle = styled.h1`
@@ -94,6 +101,19 @@ const PageTitle = styled.h1`
     font-size: 15px;
   }
 
+  @media(max-width:1000px){
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    flex-direction:column;
+    margin: 20px 0;
+
+    em{
+      margin-top: 5px;
+      text-align:center;
+    }
+  }
+
 `
 
 const Bar = styled.div`
@@ -103,6 +123,10 @@ const Bar = styled.div`
   top:20px;
   right: 39%;
   background-color:rgb(229,228,226);
+
+  @media(max-width:1000px){
+    display: none;
+  }
 `
 
 const Total = styled.article`
@@ -174,7 +198,26 @@ const Total = styled.article`
       }
   }
 
- 
+  @media(max-width:1000px){
+    width: 80%;
+    margin: 10px 0;
+    display:flex;
+    height: fit-content;
+    flex-direction: column;
+    position: initial;
+
+    h1{
+      font-size: 22px;
+    }
+
+    h2{
+      display:none;
+
+      p{
+        display:none;
+      }
+    }
+  } 
 `
 
 const EmptyCart = styled.div`

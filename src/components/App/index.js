@@ -9,6 +9,7 @@ import CheckoutPage from '../Checkout';
 import History from './../History';
 import SuccessPage from '../SuccessPage';
 import AboutUs from './../AboutUs';
+import Search from './../Search';
 
 import UserContext from './../../contexts/UserContext';
 import ProductsContext from '../../contexts/ProductsContext';
@@ -41,9 +42,10 @@ function App(){
           <Route path='/signin' element={<SignInPage />} />
           <Route path='/mycart' element={<CartPage />} />
           <Route path='/checkout' element={<CheckoutPage />} />
-          <Route path='/history' element={<History />} />
+          <Route path='/mypurchases' element={<History />} />
           <Route path='/success' element={<SuccessPage />} />
           <Route path='/aboutus' element={<AboutUs />} />
+          <Route path='/search/:search' element={<Search />} />
         </Routes>
       </ProductsContext.Provider>
       </UserContext.Provider>

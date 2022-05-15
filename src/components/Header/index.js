@@ -47,7 +47,7 @@ const Header = styled.header`
   display:flex;
   align-items:center;
   justify-content:space-evenly;
-  z-index: 1;
+  z-index: 6;
 
   img{
     width: 46px;

@@ -21,4 +21,5 @@ const Footer = styled.footer`
   align-items: center;
   position: fixed;
   bottom: 0;
+  z-index:6;
 `;

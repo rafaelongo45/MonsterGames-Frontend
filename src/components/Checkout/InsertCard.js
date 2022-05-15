@@ -1,36 +1,69 @@
-import { useState } from "react";
+import axios from "axios";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 
-import {MdKeyboardArrowDown} from 'react-icons/md'
+import UserContext from "../../contexts/UserContext";
+
+import ProductsContext from "../../contexts/ProductsContext";
 
 function InsertCard(props){
-  const {userCard, setUserCard, totalPrice} = props;
-  const [click, setClick] = useState(false);
+  const {userCard, setUserCard, totalPrice, userAddress} = props;
+  
+  const {userInfo} = useContext(UserContext);
+  const {chosenProducts, setChosenProducts} = useContext(ProductsContext);
+
+  const navigate = useNavigate();
+  const storageToken = localStorage.getItem('token_MonsterGames');
+
+
+  function sendData(){
+
+    console.log(storageToken)
+    console.log(userInfo.token)
+
+    if(!storageToken){
+      const config = {
+        headers:{
+          'Authorization': `Bearer ${storageToken}`
+        }
+      }
+      return config
+    }    
+
+    const config = {
+      headers:{
+        'Authorization': `Bearer ${userInfo.token}`
+      }
+    }
+
+    const promise = axios.post('http://localhost:5000/checkout', {
+      products: chosenProducts,
+      paymentInfo: userCard,
+      sendTo: userAddress
+    }, config)
+
+    promise.then(response => {
+      console.log(response);
+      setChosenProducts([])
+      navigate('/success', {state: {insertedId: response.data.insertedId}});
+    });
+
+    promise.catch(error => {
+      console.log(error)
+      alert(error.response.data)
+    });
+  }
 
   const price = parseFloat(totalPrice / userCard.installments).toFixed(2);
 
-  function clickToggle(){
-    if(click){
-      setClick(false);
-    }else{
-      setClick(true);
-    }
-  }
-
   return (
     <Card>
-      <div onClick= {clickToggle}>Cartão <span><MdKeyboardArrowDown/></span></div>
-
-{
-  !click?
-  <em></em>
-  :
-      <>
       <Form>
         <Input type='text' placeholder='Número do cartão' required value={userCard.cardNumber} 
           onChange={e => setUserCard ({...userCard, cardNumber: e.target.value, value: parseFloat(price) })} />
 
-        <Input type='text' placeholder='Data de vencimento' required value={userCard.expireDate} 
+        <Input type='text' placeholder='Vencimento' required value={userCard.expireDate} 
           onChange={e => setUserCard ({...userCard, expireDate: e.target.value })} />
 
         <Input type='number' placeholder='CVV' required value={userCard.cvv} 
@@ -44,29 +77,24 @@ function InsertCard(props){
           <option value = "2">2</option>
           <option value = "3">3</option>
         </Installments>
-
       </Form>
-      
-      <p>Total: {userCard.installments}x R$ {price}</p>
-      </>
-      }
+
+      <Finalize>
+        <p>Total: {userCard.installments}x R$ {price}</p>
+        <button onClick={sendData}>Confirmar compra!</button>
+      </Finalize>
     </Card>
   )
 }
 
 export default InsertCard;
 
-const Card = styled.section`
+const Card = styled.div`
+  width: 99.6%;
+  height: 100%;
   display:flex;
-  flex-wrap: wrap;
-  flex-direction:column;
-  border: 2px solid white;
-  background-color: rgb(242,243,244);
-  margin-top: 30px;
-  padding: 20px 0;
-  border-radius: 10px;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
-  
+  position:relative;
+ 
   div{
     z-index: 1;
     margin-left: 20px;
@@ -77,31 +105,51 @@ const Card = styled.section`
     display:flex;
     align-items:center;
     position:relative;
-
-    span{
-      position: absolute;
-      top: -5px;
-      right: 8px;
-      font-size: 35px;
-    }
 }
 `
 
 const Form = styled.form`
   width: 100%;
+  height:fit-content;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 20px;
+  flex-wrap:wrap;
 `;
 
 const Input = styled.input`
   width: 90%;
+  visibility: visible;
   height: 40px;
-  margin-bottom: 10px;
   border: 1px solid #fff;
+  margin: 0 0 20px 20px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.75);
+
+  :nth-child(1){
+    margin-top: 100px;
+    width: 40%;
+  }
+
+  :nth-child(2){
+    margin-top: 100px;
+    width: 16%;
+    margin-left: 20px;
+    margin-right: 200px;
+  }
+
+  :nth-child(3){
+    width: 10%;
+    margin-right: 70%;
+    
+  }
+
+  :nth-child(4){
+    width: 25%;
+    margin-right: 20px;
+  }
+  
+  ::placeholder{
+    padding-left: 0;
+  }
+  
   
   ::placeholder{
     padding-left: 0;
@@ -119,5 +167,39 @@ const Installments = styled.select`
 
   option{
     text-align: center;
+  }
+`
+
+const Finalize = styled.section`
+  border-top: 1px solid rgb(132,132,130);
+  display:flex;
+  left: 2.5%;
+  width: 95%;
+  position:absolute;
+  height: 90px;
+  bottom: 0;
+  font-family: 'Creepster', cursive;
+  color:rgba(0,0,0,0.8);
+
+
+  p{
+    position: absolute;
+    bottom: 30px;
+    left: 0;
+    font-size: 24px;
+    cursor:pointer;
+  }
+
+  button{
+    height: 45px;
+    position:absolute;
+    bottom: 20px;
+    right: 10px;
+    border:none;
+    background:none;
+    color:rgb(128,24,24);
+    font-size: 26px;
+    font-family: 'Creepster', cursive;
+
   }
 `

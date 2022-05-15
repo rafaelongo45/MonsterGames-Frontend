@@ -68,8 +68,11 @@ const Product = styled.div`
     border:none;
     font-size: 24px;
     color: var(--header-color);
-    cursor:pointer;
 
+    svg{
+      cursor:pointer;
+    }
+    
     svg:active{
       animation: shake 0.1s;
     }

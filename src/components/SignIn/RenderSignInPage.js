@@ -84,11 +84,14 @@ const Main = styled.main`
 `
 
 const Form = styled.form`
-  //margin-top: 250px;
   display:flex;
   align-items:center;
   flex-direction:column;
   width: 20%;
+
+  button:hover{
+    background-color:rgb(168,28,7);
+  }
 
   input{
     width: 320px;
@@ -109,7 +112,7 @@ const Form = styled.form`
     border-radius: 5px;
     font-family: 'Creepster', cursive;
     color: white;
-    background-color:rgb(168,28,7);
+    background-color: rgb(174,12,0);
     margin-top: 10px;
     font-size: 20px;
     cursor: pointer;

@@ -17,7 +17,7 @@ function SignUp (){
     e.preventDefault();
 
     if (user.password !== user.repeat_password){
-      alert('As senhas são diferentes!')
+      alert('As senhas são diferentes!');
       return;
     }
 
@@ -44,17 +44,41 @@ function SignUp (){
       <Header />
         <Main>
           <Form onSubmit={signUp}>
+
             <Input type='text' placeholder='* Nome' required value={user.name} 
-              onChange={e => setUser ({...user, name: e.target.value })} />
+              onChange={e => {
+                setUser ({...user, name: e.target.value });
+                e.target.style="border: 1px solid #fff;"
+              }} 
+              onInvalid = {(e) => e.target.style="border: 1px solid red;"}/>
+
             <Input type='email' placeholder='* E-mail' required value={user.email} 
-              onChange={e => setUser ({...user, email: e.target.value })} />
+              onChange={e => {
+                setUser ({...user, email: e.target.value });
+                e.target.style="border: 1px solid #fff;"
+              }} 
+              onInvalid = {(e) => e.target.style="border: 1px solid red;"} />
+
             <Input type='password' placeholder='* Senha' required value={user.password} 
-              onChange={e => setUser ({...user, password: e.target.value })} />
-            <Input type='password' placeholder='* Confirme a senha' required value={user.repeat_password} 
-              onChange={e => setUser ({...user, repeat_password: e.target.value })} />
+              onChange={e => {
+                setUser ({...user, password: e.target.value });
+                e.target.style="border: 1px solid #fff;"
+              }}
+              onInvalid = {(e) => e.target.style="border: 1px solid red;"} />
+
+            <Input id='confirmPwd' type='password' placeholder='* Confirme a senha' required value={user.repeat_password} 
+              onChange={e => {
+                setUser ({...user, repeat_password: e.target.value });
+                e.target.style="border: 1px solid #fff;"
+              }}
+              onInvalid = {(e) => e.target.style="border: 1px solid red;"} />
 
             <Input type='url' placeholder='Sua linda foto' value={user.avatar} 
-              onChange={e => setUser ({...user, avatar: e.target.value })} />
+              onChange={e => {
+                setUser ({...user, avatar: e.target.value });
+                e.target.style="border: 1px solid #fff;"
+              }}
+              onInvalid = {(e) => e.target.style="border: 1px solid red;"} />
 
             <Button type='submit'>Cadastrar</Button>
           </Form>
@@ -88,6 +112,10 @@ const Form = styled.form`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  button:hover {
+    background-color:rgb(168,28,7);
+  }
 `;
 
 const Input = styled.input`
@@ -110,10 +138,11 @@ const Button = styled.button`
   border-radius: 5px;
   font-family: 'Creepster', cursive;
   color: white;
-  background-color:rgb(168,28,7);
+  background-color: rgb(174,12,0);
   margin-top: 10px;
   font-size: 20px;
   cursor: pointer;
+
 `;
 
 export default SignUp;

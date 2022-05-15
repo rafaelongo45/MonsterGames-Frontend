@@ -24,29 +24,28 @@ function RenderHistory(){
 
   return(
     <Main>
-      <Container>
-        {purchases?.map(purchase => <PurchaseDetails key={purchase._id} purchase={purchase}/>)}
-      </Container>
+      <Title>Meus pedidos</Title>
+      {purchases?.map(purchase => <PurchaseDetails key={purchase._id} purchase={purchase}/>)}     
     </Main>
   ); 
 }
 
 const Main = styled.main`
   max-width: 700px;
-  height: 100%;
   padding-top: 100px;
   margin: 0 auto;
   margin-bottom: 50px;
-  /*background-image: url(https://images4.alphacoders.com/741/74174.png);
-  background-size: cover;
-  background-position: center;*/
+  color: var(--header-color);
 `;
 
-const Container = styled.div`
-  max-width: 700px;
-  height: 100%;
-  margin-bottom: 20px;
-  color:rgb(128,24,24);
+const Title = styled.div`
+  font-family: 'Creepster', cursive;
+  font-size: 30px;
+  color: #000;
+  padding-left: 10px;
+  padding-bottom: 20px;
+  
 `;
+
 
 export default RenderHistory;

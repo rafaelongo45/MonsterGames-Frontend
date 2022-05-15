@@ -12,7 +12,7 @@ function RenderHistory(){
   const [ purchases, setPurchases ] = useState ([]);
 
   useEffect(() => {
-    const URL = 'http://localhost:5000/checkout';
+    const URL = 'https://monstergames-projeto14.herokuapp.com/checkout';
     const CONFIG = { headers: { 'Authorization': `Bearer ${userInfo.token}` }};
     const promise = axios.get(URL,CONFIG)  ;
     promise.then( response => setPurchases(response.data));

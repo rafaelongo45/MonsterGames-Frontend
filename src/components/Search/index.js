@@ -18,7 +18,7 @@ function Search (props){
   const [games, setGames] = useState([]);
 
   useEffect(() => {
-    const URL = `http://localhost:5000/products?genre=${search}`;
+    const URL = `https://monstergames-projeto14.herokuapp.com/products?genre=${search}`;
     const promise = axios.get(URL);
     promise.then((promise) => { setGames([...promise.data]); });
     promise.catch((err)=>{

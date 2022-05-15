@@ -11,7 +11,7 @@ function Home (){
   const [games, setGames] = useState([]);
 
   useEffect(() => {
-    const URL = 'http://localhost:5000/products';
+    const URL = 'https://monstergames-projeto14.herokuapp.com/products';
     const promise = axios.get(URL);
     promise.then((promise) => { setGames([...promise.data]); });
     promise.catch((err)=>{

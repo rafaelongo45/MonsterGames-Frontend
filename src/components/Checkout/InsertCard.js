@@ -37,7 +37,7 @@ function InsertCard(props){
       }
     }
 
-    const promise = axios.post('http://localhost:5000/checkout', {
+    const promise = axios.post('https://monstergames-projeto14.herokuapp.com/checkout', {
       products: chosenProducts,
       paymentInfo: userCard,
       sendTo: userAddress

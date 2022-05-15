@@ -32,7 +32,7 @@ function RenderSuccessPage(){
       }
     }
   
-    const promise = axios.get(`http://localhost:5000/checkout/${purchaseId}`, config)
+    const promise = axios.get(`https://monstergames-projeto14.herokuapp.com/checkout/${purchaseId}`, config)
   
       promise.then(response => {
         setPurchaseInfo(response.data);

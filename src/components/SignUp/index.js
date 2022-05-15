@@ -21,7 +21,7 @@ function SignUp (){
       return;
     }
 
-    const URL = 'http://localhost:5000/signup';
+    const URL = 'https://monstergames-projeto14.herokuapp.com/signup';
     
     const promise = axios.post(URL, user );
     

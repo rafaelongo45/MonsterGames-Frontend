@@ -8,6 +8,7 @@ import SignInPage from './../SignIn';
 import CheckoutPage from '../Checkout';
 import History from './../History';
 import SuccessPage from '../SuccessPage';
+import AboutUs from './../AboutUs';
 
 import UserContext from './../../contexts/UserContext';
 import ProductsContext from '../../contexts/ProductsContext';
@@ -42,6 +43,7 @@ function App(){
           <Route path='/checkout' element={<CheckoutPage />} />
           <Route path='/history' element={<History />} />
           <Route path='/success' element={<SuccessPage />} />
+          <Route path='/aboutus' element={<AboutUs />} />
         </Routes>
       </ProductsContext.Provider>
       </UserContext.Provider>

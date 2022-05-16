@@ -26,7 +26,7 @@ function RenderHeader(props){
           <RenderSideBarButton/>
           <RenderLogo/>
           <Search>
-            <input type='text' placeholder='Digite o gênero para buscar'
+            <input type='text' placeholder='Digite nome ou gênero para buscar'
               onChange={ e => setSearch (e.target.value ) }
               onKeyDown={ e => handleKeyPress(e)}          />  
             <div onClick={handleSearch}><FaSearch /></div>

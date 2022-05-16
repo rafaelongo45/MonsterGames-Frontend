@@ -55,7 +55,7 @@ function InsertCard(props){
     });
   }
 
-  const price = parseFloat(totalPrice / userCard.installments).toFixed(2);
+  const price = parseFloat(totalPrice / userCard.installments).toFixed(2).replace('.',',');
 
   return (
     <Card>

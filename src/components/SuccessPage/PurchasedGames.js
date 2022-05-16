@@ -20,7 +20,7 @@ function PurchasedGames({purchaseInfo}){
       </Games> 
 
       <Total>
-        <p>Valor pago: {purchaseInfo.paymentInfo.installments}x de R${(purchaseInfo.paymentInfo.value / purchaseInfo.paymentInfo.installments).toFixed(2)}</p>    
+        <p>Valor pago: {purchaseInfo.paymentInfo.installments}x de R${(purchaseInfo.paymentInfo.value / purchaseInfo.paymentInfo.installments).toFixed(2).replace('.',',')}</p>    
       </Total>
       <em>Também enviamos algumas informações para o seu e-mail cadastrado</em>
 

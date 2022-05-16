@@ -45,7 +45,7 @@ function RenderProduct(props){
       <img src={props.image} alt={props.name}/>
       <Info>
         <h1>{props.name}</h1>
-        <p>R$ {(props.price * props.quantity).toFixed(2)}</p>
+        <p>R$ {(props.price * props.quantity).toFixed(2).replace('.',',')}</p>
 
           <form>
             <select value = {props.quantity} onChange={getnewQuantity}>

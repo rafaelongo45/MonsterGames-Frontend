@@ -58,7 +58,7 @@ function ProductsSlider(props){
             <label htmlFor="slide1"></label>
             
             <Products>
-              <span>Total : R$ {totalPrice.toFixed(2)}</span>  
+              <span>Total : R$ {totalPrice.toFixed(2).replace('.',',')}</span>  
               {
                 chosenProducts.map((product) => {
                   return (
@@ -68,7 +68,7 @@ function ProductsSlider(props){
                       <Info>
                         <h2>{product.name}</h2>
                         <p>Quantidade: {product.quantity}</p>
-                        <em>Total: R$ {(product.price * product.quantity).toFixed(2)}</em>
+                        <em>Total: R$ {(product.price * product.quantity).toFixed(2).replace('.',',')}</em>
                       </Info>
                     </Product>
                   )

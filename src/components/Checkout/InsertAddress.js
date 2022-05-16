@@ -33,7 +33,7 @@ function InsertAddress(props){
           onChange={e => setUserAddress ({...userAddress, state: e.target.value })} />
       </Form>
       }
-      <span>Total : R$ {totalPrice.toFixed(2)}</span>
+      <span>Total : R$ {totalPrice.toFixed(2).replace('.',',')}</span>
     </Address>
   )
 }

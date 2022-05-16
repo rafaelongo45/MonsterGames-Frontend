@@ -35,7 +35,7 @@ function RenderCartPage(){
           <Total>
             <h1>Total do carrinho</h1>
             <h2>Frete: <p>  R$ 0,00</p></h2>
-            <h3>Total: <p> R$ {totalPrice.toFixed(2)}</p></h3>
+            <h3>Total: <p> R$ {totalPrice.toFixed(2).replace('.',',')}</p></h3>
           </Total>
           <button onClick={token ? () => navigate('/checkout')  : () => navigate('/signin')}>Checkout <MdKeyboardArrowRight/></button>
         </>

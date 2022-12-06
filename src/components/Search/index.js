@@ -1,47 +1,51 @@
-import axios from 'axios';
-import styled from 'styled-components';
-import React,{ useState , useEffect} from 'react';
+import axios from "axios";
+import styled from "styled-components";
+import React, { useState, useEffect } from "react";
 
 import RenderHeader from "../Header/index.js";
-import RenderFooter from '../Footer/index.js';
+import RenderFooter from "../Footer/index.js";
 
-import Game from './../Game';
+import Game from "./../Game";
 
-import {  useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
-function Search (props){
-
+function Search(props) {
   const { search } = useParams();
+  const { REACT_APP_DB_URL } = process.env;
 
   //const { search } = props;
 
   const [games, setGames] = useState([]);
 
   useEffect(() => {
-    const URL = `https://monstergames-projeto14.herokuapp.com/products?genre=${search}`;
+    const URL = `${REACT_APP_DB_URL}/products?genre=${search}`;
     const promise = axios.get(URL);
-    promise.then((promise) => { setGames([...promise.data]); });
-    promise.catch((err)=>{
-      alert('Ocorreu um erro - código ' + err.response.status);
+    promise.then((promise) => {
+      setGames([...promise.data]);
+    });
+    promise.catch((err) => {
+      alert("Ocorreu um erro - código " + err.response.status);
       console.log(err);
     });
-  },[search]);
+  }, [search]);
 
   return (
     <>
       <RenderHeader />
-      
+
       {console.log(search)}
-     
+
       <Container>
-        <Div>Exibindo resultados para <span>{search}</span></Div>
+        <Div>
+          Exibindo resultados para <span>{search}</span>
+        </Div>
         <Main>
-          {games?.map( ({_id,name,image,price}) => 
-            <Game key={_id} name={name} image={image} price={price} id = {_id}/>
-          )}       
+          {games?.map(({ _id, name, image, price }) => (
+            <Game key={_id} name={name} image={image} price={price} id={_id} />
+          ))}
         </Main>
       </Container>
-      <RenderFooter/>
+      <RenderFooter />
     </>
   );
 }
@@ -53,24 +57,23 @@ const Container = styled.div`
 `;
 
 const Main = styled.main`
-    max-width: 840px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    padding-bottom: 30px;
+  max-width: 840px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding-bottom: 30px;
 `;
 
 const Div = styled.div`
   margin: 20px 20px;
   font-size: 20px;
   font-weight: 700;
-  
+
   span {
     text-transform: uppercase;
     font-style: italic;
   }
-
 `;
 
 export default Search;

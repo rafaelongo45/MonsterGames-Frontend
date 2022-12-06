@@ -1,33 +1,37 @@
-import React, { useEffect, useState, useContext } from 'react';
-import axios from 'axios';
-import styled from 'styled-components';
+import React, { useEffect, useState, useContext } from "react";
+import axios from "axios";
+import styled from "styled-components";
 
+import UserContext from "../../contexts/UserContext";
+import PurchaseDetails from "./PurchaseDetails";
 
-import UserContext from '../../contexts/UserContext';
-import PurchaseDetails from './PurchaseDetails';
-
-function RenderHistory(){
-
+function RenderHistory() {
+  const { REACT_APP_DB_URL } = process.env;
   const { userInfo } = useContext(UserContext);
-  const [ purchases, setPurchases ] = useState ([]);
+  const [purchases, setPurchases] = useState([]);
 
   useEffect(() => {
-    const URL = 'https://monstergames-projeto14.herokuapp.com/checkout';
-    const CONFIG = { headers: { 'Authorization': `Bearer ${userInfo.token}` }};
-    const promise = axios.get(URL,CONFIG)  ;
-    promise.then( response => setPurchases(response.data));
-    promise.catch( err => {
-      alert('Ocorreu um erro ao carregar seu histórico- código ' + err.response.status);
+    const URL = `${REACT_APP_DB_URL}/checkout`;
+    const CONFIG = { headers: { Authorization: `Bearer ${userInfo.token}` } };
+    const promise = axios.get(URL, CONFIG);
+    promise.then((response) => setPurchases(response.data));
+    promise.catch((err) => {
+      alert(
+        "Ocorreu um erro ao carregar seu histórico- código " +
+          err.response.status
+      );
       console.log(err);
     });
-  }, [userInfo] );
+  }, [userInfo]);
 
-  return(
+  return (
     <Main>
       <Title>Meus pedidos</Title>
-      {purchases?.map(purchase => <PurchaseDetails key={purchase._id} purchase={purchase}/>)}     
+      {purchases?.map((purchase) => (
+        <PurchaseDetails key={purchase._id} purchase={purchase} />
+      ))}
     </Main>
-  ); 
+  );
 }
 
 const Main = styled.main`
@@ -39,13 +43,11 @@ const Main = styled.main`
 `;
 
 const Title = styled.div`
-  font-family: 'Creepster', cursive;
+  font-family: "Creepster", cursive;
   font-size: 30px;
   color: #000;
   padding-left: 10px;
   padding-bottom: 20px;
-  
 `;
-
 
 export default RenderHistory;

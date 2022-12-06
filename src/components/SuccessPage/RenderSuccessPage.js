@@ -5,7 +5,6 @@ import { useContext, useState, useEffect } from "react";
 
 import PurchasedGames from "./PurchasedGames";
 import UserContext from "../../contexts/UserContext";
-import ProductsContext from "../../contexts/ProductsContext";
 
 function RenderSuccessPage() {
   const { userInfo } = useContext(UserContext);
